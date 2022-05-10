@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  html,
+  body{
+    width: 100vw;
+    /* overflow-y:hidden; */
+  }
+  #wrap{
+    position: absolute;
+    width: 100%;
+  }
+  .page{
+    width: 100%;
+    height: calc(100vh);
+  }
