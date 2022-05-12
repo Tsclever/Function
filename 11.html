@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			overflow: hidden;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+		.box1{
+			width: 100%;
+			height: 100%;
+			background-color: gray;
+		}
+		.box2{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 100%;
+			background-color: saddlebrown;
+			transition : top 0.7s cubic-bezier(0.5,0,0.2,1) 0s;
+			overflow-y:  scroll;
+		}
+		.box2>div{
+			height: 200px;
+			background-color: aqua;
+			margin-top: 20px;
+		}
+	</style>
+	<body>
+		<div class="box1">
+			1
+		</div>
+		
+		<div class="box2">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		
+	</body>
+	
+	<script>
+		function scrollFunc(e){
+			// 滑轮位置
+			let scop = document.getElementsByClassName("box2")[0].scrollTop;
+			e = e || window.event;
+			
+			// 到达切换边界
+			if(scop === 0){
+				
+				if (e.wheelDelta) {  //IE/Opera/Chrome/Safari
+					if (e.wheelDelta > 0 ) { //当滑轮向上滚动时
+						document.getElementsByClassName("box2")[0].style.top = "100%";
+					}
+					if (e.wheelDelta < 0 ) { //当滑轮向下滚动时
+						document.getElementsByClassName("box2")[0].style.top = "0";
+					}
+				} else if (e.detail) {  //Firefox滑轮事件
+					if (e.detail < 0 ) { //当滑轮向上滚动时
+						document.getElementsByClassName("box2")[0].style.top = "100%";
+					}
+					if (e.detail > 0 ) { //当滑轮向下滚动时
+						document.getElementsByClassName("box2")[0].style.top = "0";
+					}
+				}
+				
+				scop = 0;
+			}
+			
+		}
+		
+		/* Firefox */
+		  if (document.addEventListener) { 
+		    document.addEventListener('DOMMouseScroll', scrollFunc, false); 
+		  }//W3C  
+		  window.onmousewheel = document.onmousewheel = scrollFunc; //IE/Opera/Chrome/Safari  
+	</script>
+</html>
